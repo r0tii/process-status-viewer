@@ -1,0 +1,88 @@
+version: "3.9"
+
+x-django: &django
+  build:
+    context: .
+    dockerfile: ./backend/docker/local/django/Dockerfile
+  depends_on:
+    - postgres
+    - pgadmin
+  env_file:
+    - ./backend/.envs/.local/.django
+    - ./backend/.envs/.local/.postgres
+  volumes:
+    - "./backend:/app"
+  networks:
+    - local_backend
+
+services:
+  django:
+    <<: *django
+    image: local_django
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    networks:
+      - local_backend
+      - local_backend_frontend
+    command: /start
+  postgres:
+    build:
+      context: .
+      dockerfile: ./backend/docker/production/postgres/Dockerfile
+    image: local_postgres
+    ports:
+      - "5432:5432"
+      - "6543:5432"
+    restart: unless-stopped
+    env_file:
+      - ./backend/.envs/.local/.postgres
+    volumes:
+      - "local_postgres_data:/var/lib/postgresql/data"
+    networks:
+      - local_backend
+  pgadmin:
+    depends_on:
+      - postgres
+    image: dpage/pgadmin4
+    ports:
+      - "5050:5050"
+    restart: unless-stopped
+    env_file:
+      - ./backend/.envs/.local/.pgadmin
+    volumes:
+      - "local_pgadmin_data:/var/lib/pgadmin"
+    networks:
+      - local_backend
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/docker/local/node/Dockerfile
+    depends_on:
+      - django
+    image: local_frontend
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    env_file:
+    - ./frontend/.envs/.local/.node
+    volumes:
+      - "./frontend:/app"
+    networks:
+      - local_frontend
+      - local_backend_frontend
+    command: npm run start
+
+volumes:
+  local_postgres_data: {}
+  local_pgadmin_data: {}
+networks:
+  local_backend:
+    name: local_backend
+    driver: bridge
+  local_frontend:
+    name: local_frontend
+    driver: bridge
+  local_backend_frontend:
+    name: local_backend_frontend
+    driver: bridge

@@ -1,0 +1,5 @@
+build.zip
+build/
+**/node_modules
+.git
+.idea

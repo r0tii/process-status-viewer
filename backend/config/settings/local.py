@@ -1,13 +1,18 @@
+import socket
 from .base import *
 from .base import env
 
 # GENERAL
 # ------------------------------------------------------------------------------
-DEBUG = env("DEBUG", default=True)
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
-INTERNAL_IPS = ["127.0.0.1"]
+# Trick to show Django Debug Toolbar when using Docker
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips] + env.list(
+    "INTERNAL_IPS"
+)  # noqa
 # APPS
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += [

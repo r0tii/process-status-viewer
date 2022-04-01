@@ -3,4 +3,4 @@ from .base import env
 
 # GENERAL
 # -------------------------------------------------------------------------
-DEBUG = env("DEBUG", default=False)
+DEBUG = env("DEBUG")

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Bash options
+set -o errexit
+set -o pipefail
+set -o nounset
+
+cat << EOF
+Synchonizing node_modules from the container to the host (dev server not yet available)...
+
+Please be patient, each next copy will be faster!
+EOF
+
+# copy from the image backup location to the volume mount
+rsync -ar /usr/src/cache/node_modules/. /app/node_modules/
+
+>&2 echo "Frontend is available!"
+
+exec "$@"

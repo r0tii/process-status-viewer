@@ -15,9 +15,9 @@ PROJECT_NAME = "process_status_monitoring"
 
 APPS_DIR = BASE_DIR / PROJECT_NAME
 
-SECRET_KEY = env("SECRET_KEY", default="test")
+SECRET_KEY = env("SECRET_KEY")
 
-DEBUG = env("DEBUG", default=True)
+DEBUG = env("DEBUG")
 # APPS
 # ------------------------------------------------------------------------------
 INSTALLED_APPS = [

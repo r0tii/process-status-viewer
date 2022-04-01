@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Bash options
+set -o errexit
+set -o pipefail
+set -o nounset
+
+# Health of dependent services
+postgres_ready() {
+python << END
+import sys
+import psycopg2
+
+try:
+    psycopg2.connect(
+        password="${POSTGRES_PASSWORD}",
+        user="${POSTGRES_USER}",
+        dbname="${POSTGRES_DB}",
+        host="${POSTGRES_HOST}",
+        port="${POSTGRES_PORT}",
+    )
+except psycopg2.OperationalError:
+    sys.exit(-1)
+sys.exit(0)
+END
+}
+
+until postgres_ready; do
+    >&2 echo "Waiting for Postgres to become available..."
+    sleep 2
+done
+>&2 echo "Postgres is available!"
+
+exec "$@"
