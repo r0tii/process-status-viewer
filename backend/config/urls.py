@@ -7,7 +7,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 ]
 
-api_urlpatterns = []
+api_urlpatterns = [
+    path("api/", include("process_status_monitoring.processes.urls")),
+]
 
 urlpatterns += api_urlpatterns
 

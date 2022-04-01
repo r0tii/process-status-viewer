@@ -22,3 +22,17 @@ INSTALLED_APPS += [
 # MIDDLEWARE
 # ------------------------------------------------------------------------------
 MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+# DATABASES
+# ------------------------------------------------------------------------------
+DATABASES = {
+    "default": env.db("DATABASE_URL"),
+}
+# REST FRAMEWORK
+# ------------------------------------------------------------------------------
+REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [
+    "rest_framework.renderers.JSONRenderer",
+    "rest_framework.renderers.BrowsableAPIRenderer",
+]
+# AUTHENTICATION & AUTHORIZATION
+# ------------------------------------------------------------------------------
+CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS")
