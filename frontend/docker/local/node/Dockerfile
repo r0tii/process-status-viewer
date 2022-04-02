@@ -11,5 +11,3 @@ WORKDIR ${APP_HOME}
 COPY ./frontend/package*.json ./
 
 RUN npm install
-
-
