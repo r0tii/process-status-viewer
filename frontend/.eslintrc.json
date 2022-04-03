@@ -16,7 +16,12 @@
             "jsx": true
         },
         "ecmaVersion": 12,
-        "sourceType": "module"
+        "sourceType": "module",
+        "babelOptions": {
+          "presets": [
+            "@babel/preset-react"
+          ]
+        }
     },
     "plugins": [
         "react"
@@ -30,7 +35,8 @@
             ".jsx"
           ]
         }
-      ]
+      ],
+      "no-console": "off"
     },
     "settings": {
       "import/resolver": {
