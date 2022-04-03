@@ -1,0 +1,11 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~antd/dist/antd.css";
+
+// overriding
+.ant-layout {
+  min-height: 100vh;
+}
+
+.ant-layout-footer {
+  background: #e1e3e5;
+}
