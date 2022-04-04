@@ -1,5 +1,6 @@
 import React from 'react';
 import { Breadcrumb } from 'antd';
+import ProcessTable from 'components/Tables/ProcessTable';
 import styles from './style.module.scss';
 
 export default function Content() {
@@ -9,7 +10,9 @@ export default function Content() {
         <Breadcrumb.Item>Home</Breadcrumb.Item>
         <Breadcrumb.Item>Processes</Breadcrumb.Item>
       </Breadcrumb>
-      <div className={styles.sitelayoutContent}>bla bla test</div>
+      <div className={styles.sitelayoutContent}>
+        <ProcessTable />
+      </div>
     </>
   );
 }

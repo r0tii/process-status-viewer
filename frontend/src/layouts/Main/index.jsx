@@ -15,8 +15,6 @@ export default function MainLayout() {
       </Layout.Content>
       <Layout.Footer className={styles.layoutFooter}>
         It&apos;s mine, it&apos;s yours, it&apos;s ours. ©2022
-        <br />
-        Created with React
       </Layout.Footer>
     </Layout>
   );
