@@ -1,6 +1,6 @@
 import React from 'react';
-import { Table, Tag, Tooltip, Button } from 'antd';
-import { QuestionCircleOutlined, ReloadOutlined } from '@ant-design/icons';
+import { Table, Tag, Tooltip, Button, Avatar } from 'antd';
+import { QuestionCircleOutlined, ReloadOutlined, CloudSyncOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import camelcaseKeys from 'camelcase-keys';
 import ProcessAPIClient from 'api/clients/processes';
@@ -226,6 +226,7 @@ export default class ProcessTable extends React.Component {
     this.state = {
       processes: [],
       isLoading: false,
+      lastSync: '',
     };
   }
 
@@ -237,9 +238,11 @@ export default class ProcessTable extends React.Component {
     this.setState({ isLoading: true });
     ProcessAPIClient.getProcesses()
       .then((response) => {
+        const camelCasedData = camelcaseKeys(response.data);
         this.setState({
-          processes: camelcaseKeys(response.data),
+          processes: camelCasedData,
           isLoading: false,
+          lastSync: camelCasedData[0].updatedAt,
         });
       })
       .catch((error) => {
@@ -251,9 +254,11 @@ export default class ProcessTable extends React.Component {
     this.setState({ isLoading: true });
     ProcessAPIClient.refreshProcesses()
       .then((response) => {
+        const camelCasedData = camelcaseKeys(response.data);
         this.setState({
-          processes: camelcaseKeys(response.data),
+          processes: camelCasedData,
           isLoading: false,
+          lastSync: camelCasedData[0].updatedAt,
         });
       })
       .catch((error) => {
@@ -262,19 +267,31 @@ export default class ProcessTable extends React.Component {
   };
 
   render() {
-    const { processes, isLoading } = this.state;
+    const { processes, isLoading, lastSync } = this.state;
     return (
       <>
-        <Button
-          type="primary"
-          onClick={this.refetchData}
-          loading={isLoading}
-          className="mb-3"
-          size="large"
-          icon={<ReloadOutlined />}
-        >
-          Refresh
-        </Button>
+        <div className="row align-items-center">
+          <div className="col-12 col-sm-6 text-center text-sm-start mb-2 mb-sm-0">
+            <Button
+              type="primary"
+              onClick={this.refetchData}
+              loading={isLoading}
+              size="large"
+              icon={<ReloadOutlined />}
+            >
+              Refresh
+            </Button>
+          </div>
+          <div className="col-12 col-sm-6 text-center text-sm-end">
+            <Avatar
+              shape="square"
+              icon={<CloudSyncOutlined />}
+              style={{ backgroundColor: '#a9a9a9' }}
+            />
+            <p className="text-muted fw-bold mb-0">Last sync:</p>
+            <p className="text-muted">{moment(lastSync).format('DD-MM-YYYY HH:mm:ss')}</p>
+          </div>
+        </div>
         <Table
           columns={columns}
           dataSource={processes}
