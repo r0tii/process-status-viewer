@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table, Tag, Tooltip, Button, Avatar } from 'antd';
-import { QuestionCircleOutlined, ReloadOutlined, CloudSyncOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, ReloadOutlined, CloudSyncOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import camelcaseKeys from 'camelcase-keys';
 import ProcessAPIClient from 'api/clients/processes';
@@ -16,7 +16,7 @@ const columns = [
           title="A number assigned by the OS to refer to a user
                  (taken from /etc/passwd)"
         >
-          <QuestionCircleOutlined />
+          <InfoCircleOutlined />
         </Tooltip>
       </span>
     ),
@@ -32,7 +32,7 @@ const columns = [
           className="align-self-center"
           title="Username (can be UID in some OS) owning the process"
         >
-          <QuestionCircleOutlined />
+          <InfoCircleOutlined />
         </Tooltip>
       </span>
     ),
@@ -45,7 +45,7 @@ const columns = [
       <span className="d-inline-flex">
         PID&nbsp;
         <Tooltip className="align-self-center" title="Process ID of the process">
-          <QuestionCircleOutlined />
+          <InfoCircleOutlined />
         </Tooltip>
       </span>
     ),
@@ -61,7 +61,7 @@ const columns = [
           className="align-self-center"
           title="CPU time used by this process (in percentage)"
         >
-          <QuestionCircleOutlined />
+          <InfoCircleOutlined />
         </Tooltip>
       </span>
     ),
@@ -77,7 +77,7 @@ const columns = [
           className="align-self-center"
           title="Physical memory used by this process (in percentage)"
         >
-          <QuestionCircleOutlined />
+          <InfoCircleOutlined />
         </Tooltip>
       </span>
     ),
@@ -93,7 +93,7 @@ const columns = [
           className="align-self-center"
           title="Virtual memory size used by this process (in KiB)"
         >
-          <QuestionCircleOutlined />
+          <InfoCircleOutlined />
         </Tooltip>
       </span>
     ),
@@ -110,7 +110,7 @@ const columns = [
           title="Resident Set Size, the non-swappable physical
                  memory used by this process (in KiB)"
         >
-          <QuestionCircleOutlined />
+          <InfoCircleOutlined />
         </Tooltip>
       </span>
     ),
@@ -127,7 +127,7 @@ const columns = [
           title="Terminal from which this process is started. Question mark (?) sign
                  represents that this process is not started from a terminal"
         >
-          <QuestionCircleOutlined />
+          <InfoCircleOutlined />
         </Tooltip>
       </span>
     ),
@@ -140,7 +140,7 @@ const columns = [
       <span className="d-inline-flex">
         STAT&nbsp;
         <Tooltip className="align-self-center" title="The process state code">
-          <QuestionCircleOutlined />
+          <InfoCircleOutlined />
         </Tooltip>
       </span>
     ),
@@ -153,7 +153,7 @@ const columns = [
       <span className="d-inline-flex">
         START&nbsp;
         <Tooltip className="align-self-center" title="Starting time or date of the process">
-          <QuestionCircleOutlined />
+          <InfoCircleOutlined />
         </Tooltip>
       </span>
     ),
@@ -166,7 +166,7 @@ const columns = [
       <span className="d-inline-flex">
         TIME&nbsp;
         <Tooltip className="align-self-center" title="Cumulative CPU time">
-          <QuestionCircleOutlined />
+          <InfoCircleOutlined />
         </Tooltip>
       </span>
     ),
@@ -179,7 +179,7 @@ const columns = [
       <span className="d-inline-flex">
         UPDATED&nbsp;
         <Tooltip className="align-self-center" title="Last synced at">
-          <QuestionCircleOutlined />
+          <InfoCircleOutlined />
         </Tooltip>
       </span>
     ),
@@ -201,7 +201,7 @@ const expandedRowRender = (row) => {
             className="align-self-center"
             title="The command with all its arguments which started this process"
           >
-            <QuestionCircleOutlined />
+            <InfoCircleOutlined />
           </Tooltip>
         </span>
       ),
