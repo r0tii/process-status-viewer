@@ -20,9 +20,9 @@ Also, you can visit [http://127.0.0.1:8000/api](http://127.0.0.1:8000/api) to vi
 
 ## ⛔️ Warning
 
-Don’t dual develop! When developing locally, run this app either in the containers or on the host system (manually adjust env vars), never on both (cross platform issues, dependencies fuckery, intellisense and linting issues, etc)!!!
+Don’t dual develop! When developing locally, run this app either in the Docker containers (recommended) or on the host system (manually adjust env vars), never on both (cross platform issues, dependencies fuckery, intellisense and linting issues, etc)!!!
 
-There is a tradeoff when developing locally (i.e waiting 20min+ for rsync to finish copying files from container to the host vs cross platform issues) and there is no perfect solution (maybe VSCode remote containers).
+There is a tradeoff when developing locally (i.e waiting 20min+ for rsync to finish copying dependencies from container to the host vs cross platform issues) and there is no perfect solution (maybe VSCode remote containers).
 
 Read: <https://stackoverflow.com/questions/51097652/install-node-modules-inside-docker-container-and-synchronize-them-with-host>
 
