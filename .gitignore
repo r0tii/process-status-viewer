@@ -6,5 +6,6 @@
 !.vscode/extensions.json
 *.code-workspace
 
-#
-.envs/
+# Environments
+backend/.envs/.production/
+frontend/.envs/.production/

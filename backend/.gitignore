@@ -265,3 +265,8 @@ Session.vim
 tags
 
 .pytest_cache/
+
+# scripts/testing
+ps.txt
+uid.txt
+users.txt

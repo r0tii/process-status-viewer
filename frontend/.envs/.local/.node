@@ -1,0 +1,8 @@
+# Needed for hot-reload while running the app in container
+# and modifying the source code from IDE on the host
+# Warning: might create sudden CPU spikes and increase CPU usage (lower the interval value if needed)!
+# NOTE: React-scripts/CRA=5.0.0 not working with this
+CHOKIDAR_USEPOLLING=true
+CHOKIDAR_INTERVAL=2000
+REACT_APP_DJANGO_API_BASE=http://127.0.0.1:8000/api/
+REACT_APP_DJANGO_API_DOCKER_BASE=http://django:8000/api/
