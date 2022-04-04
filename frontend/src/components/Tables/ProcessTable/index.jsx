@@ -242,7 +242,10 @@ export default class ProcessTable extends React.Component {
         this.setState({
           processes: camelCasedData,
           isLoading: false,
-          lastSync: camelCasedData[0].updatedAt,
+          lastSync:
+            camelCasedData.length === 0
+              ? ''
+              : moment(camelCasedData[0].updatedAt).format('DD-MM-YYYY HH:mm:ss'),
         });
       })
       .catch((error) => {
@@ -258,7 +261,10 @@ export default class ProcessTable extends React.Component {
         this.setState({
           processes: camelCasedData,
           isLoading: false,
-          lastSync: camelCasedData[0].updatedAt,
+          lastSync:
+            camelCasedData.length === 0
+              ? ''
+              : moment(camelCasedData[0].updatedAt).format('DD-MM-YYYY HH:mm:ss'),
         });
       })
       .catch((error) => {
@@ -282,15 +288,17 @@ export default class ProcessTable extends React.Component {
               Refresh
             </Button>
           </div>
-          <div className="col-12 col-sm-6 text-center text-sm-end">
-            <Avatar
-              shape="square"
-              icon={<CloudSyncOutlined />}
-              style={{ backgroundColor: '#a9a9a9' }}
-            />
-            <p className="text-muted fw-bold mb-0">Last sync:</p>
-            <p className="text-muted">{moment(lastSync).format('DD-MM-YYYY HH:mm:ss')}</p>
-          </div>
+          {lastSync && (
+            <div className="col-12 col-sm-6 text-center text-sm-end">
+              <Avatar
+                shape="square"
+                icon={<CloudSyncOutlined />}
+                style={{ backgroundColor: '#a9a9a9' }}
+              />
+              <p className="text-muted fw-bold mb-0">Last sync:</p>
+              <p className="text-muted">{lastSync}</p>
+            </div>
+          )}
         </div>
         <Table
           columns={columns}
