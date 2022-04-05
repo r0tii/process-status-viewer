@@ -159,6 +159,21 @@ const columns = [
     ),
     dataIndex: 'start',
     sorter: (a, b) => a.start.localeCompare(b.start),
+    render: (value) => {
+      const startSplited = value.split(':');
+      return moment(
+        new Date(
+          Date.UTC(
+            moment().year(),
+            moment().month(),
+            moment().hours(),
+            startSplited[0],
+            startSplited[1],
+            startSplited[2],
+          ),
+        ),
+      ).format('HH:mm');
+    },
     showSorterTooltip: false,
   },
   {
@@ -185,7 +200,9 @@ const columns = [
     ),
     dataIndex: 'updatedAt',
     sorter: (a, b) => moment(a.updatedAt).unix() - moment(b.updatedAt).unix(),
-    render: (value) => moment(value).format('DD-MM-YYYY HH:mm:ss'),
+    render: (value) => {
+      return moment(value).format('DD-MM-YYYY HH:mm:ss');
+    },
     showSorterTooltip: false,
     defaultSortOrder: 'descend',
   },
