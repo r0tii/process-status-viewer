@@ -52,6 +52,7 @@ const columns = [
     dataIndex: 'pid',
     sorter: (a, b) => a.pid - b.pid,
     showSorterTooltip: false,
+    defaultSortOrder: 'ascend',
   },
   {
     title: () => (
@@ -188,23 +189,6 @@ const columns = [
     dataIndex: 'time',
     sorter: (a, b) => a.time.localeCompare(b.time),
     showSorterTooltip: false,
-  },
-  {
-    title: () => (
-      <span className="d-inline-flex">
-        UPDATED&nbsp;
-        <Tooltip className="align-self-center" title="Last synced at">
-          <InfoCircleOutlined />
-        </Tooltip>
-      </span>
-    ),
-    dataIndex: 'updatedAt',
-    sorter: (a, b) => moment(a.updatedAt).unix() - moment(b.updatedAt).unix(),
-    render: (value) => {
-      return moment(value).format('DD-MM-YYYY HH:mm:ss');
-    },
-    showSorterTooltip: false,
-    defaultSortOrder: 'descend',
   },
 ];
 
