@@ -1,0 +1,43 @@
+site_name: Project Documentation
+site_description: "Project documentation."
+site_author: "Team"
+
+docs_dir: docs
+copyright: "© 2022. All rights reserved."
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - content.code.annotate
+  icon:
+    admonition:
+      note: fontawesome/solid/sticky-note
+      abstract: fontawesome/solid/book
+      info: fontawesome/solid/info-circle
+      tip: fontawesome/solid/bullhorn
+      success: fontawesome/solid/check
+      question: fontawesome/solid/question-circle
+      warning: fontawesome/solid/exclamation-triangle
+      failure: fontawesome/solid/bomb
+      danger: fontawesome/solid/skull
+      bug: fontawesome/solid/robot
+      example: fontawesome/solid/flask
+      quote: fontawesome/solid/quote-left
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+nav:
+  - Home: index.md
+  - Getting Up and Running Locally With Docker: running-locally-docker.md
+
+plugins:
+  - search

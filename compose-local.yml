@@ -72,6 +72,15 @@ services:
       - local_frontend
       - local_backend_frontend
     command: npm run start
+  project_docs:
+    image: "squidfunk/mkdocs-material"
+    ports:
+      - "4000:8000"
+    restart: "unless-stopped"
+    volumes:
+      - "./backend:/docs"
+    networks:
+      - "local_backend"
 
 volumes:
   local_postgres_data: {}
