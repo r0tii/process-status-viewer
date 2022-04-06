@@ -31,7 +31,7 @@ class ProcessRefreshView(generics.GenericAPIView):
         # Has potential to be blocking (when there are a lot
         # of running processes, parsing the whole str, etc)
         # and should be moved out of the request-response cycle.
-        # For now, it should be ok with with'batch_create' for the MVP.
+        # For now, it should be ok with with'bulk_create' for the MVP.
         call_command("store_ps_output")
         serializer = self.get_serializer(self.get_queryset(), many=True)
         return Response(data=serializer.data, status=status.HTTP_200_OK)

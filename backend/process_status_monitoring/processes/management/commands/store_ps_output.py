@@ -54,14 +54,11 @@ class Command(BaseCommand):
             if v == output[-1]:
                 ps_rows.append(command_str.strip())
             counter += 1
-        raw_data = [*[ps_rows[i : i + 12] for i in range(0, len(ps_rows), 12)]]
-        parsed_output = []
-        for r in raw_data:
-            d = {}
-            for i, v in enumerate(r):
-                d[headers[i]] = v
-            parsed_output.append(d)
-        return parsed_output
+
+        raw_data = [
+            *[ps_rows[i : i + headers_len] for i in range(0, len(ps_rows), headers_len)]
+        ]
+        return [{headers[i]: v for i, v in enumerate(r)} for r in raw_data]
 
     def save_to_db(self, parsed_output: List[Dict[str, str]]) -> None:
         """
