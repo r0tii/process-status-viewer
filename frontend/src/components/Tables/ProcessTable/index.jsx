@@ -278,7 +278,11 @@ export default class ProcessTable extends React.Component {
     return (
       <>
         <div className="row align-items-center">
-          <div className="col-12 col-sm-6 text-center text-sm-start mb-2 mb-sm-0">
+          <div
+            className={`col-12 col-sm-6 text-center text-sm-start mb-2 ${
+              processes.length ? 'mb-sm-0' : ''
+            }`}
+          >
             <Button
               type="primary"
               onClick={this.refetchData}
