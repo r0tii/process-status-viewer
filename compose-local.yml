@@ -65,7 +65,7 @@ services:
       - "3000:3000"
     restart: unless-stopped
     env_file:
-    - ./frontend/.envs/.local/.node
+      - ./frontend/.envs/.local/.node
     volumes:
       - "./frontend:/app"
     networks:
