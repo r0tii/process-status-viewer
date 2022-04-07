@@ -51,4 +51,9 @@ COPY ./backend/docker/local/django/start /start
 RUN sed -i 's/\r$//g' /start \
     && chmod +x /start
 
+# Move to upper directory so it doesn't get overridden by bind mount (and loser permissions)
+COPY ./backend/scripts/output_ps /scripts/output_ps
+RUN sed -i 's/\r$//g' /scripts/output_ps \
+    && chmod +x /scripts/output_ps
+
 ENTRYPOINT ["/entrypoint"]

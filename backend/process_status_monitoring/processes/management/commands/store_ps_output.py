@@ -12,7 +12,7 @@ class Command(BaseCommand):
               and saves into db."""
 
     def handle(self, *args, **options):
-        ps = subprocess.run(["./scripts/output_ps.sh"], check=True, capture_output=True)
+        ps = subprocess.run(["../scripts/output_ps"], check=True, capture_output=True)
         output = subprocess.run(
             ["sed", "-e", "s/\\s\\+/-|-/g", "-e", "s/$/\\n/"],
             input=ps.stdout,
