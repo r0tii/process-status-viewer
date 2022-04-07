@@ -6,12 +6,22 @@ set -o pipefail
 set -o nounset
 
 cat << EOF
-Synchonizing node_modules from the container to the host (dev server not yet available)...
+Synchonizing an obnoxious amount of JavaScript crap (node_modules) from the container to the host...
 
-Please be patient, each next copy will be faster!
+Webpack dev server is not yet available!
+
+Please be patient, each next run will be faster!
 EOF
 
-# copy from the image backup location to the volume mount
+# READ: https://stackoverflow.com/questions/51097652/install-node-modules-inside-docker-container-and-synchronize-them-with-host
+# READ: https://stackoverflow.com/questions/59556554/clean-and-practical-way-to-handle-node-modules-in-a-dockerized-node-js-dev-envir
+
+# Good option, but takes too much time (20+ min) for cp or rysnc to finish!!
+
+# Copy from the image backup location to the volume mount
+# Pain in ass to wait, but needed in order to preserve IDE intellisense,
+# linting, formatting and other good dev experience goodies.
+# Also, no dual developing and cross platform issues!
 rsync -ar /usr/src/cache/node_modules/. /app/node_modules/
 
 >&2 echo "Frontend is available!"

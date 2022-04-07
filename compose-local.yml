@@ -65,9 +65,13 @@ services:
       - "3000:3000"
     restart: unless-stopped
     env_file:
-    - ./frontend/.envs/.local/.node
+      - ./frontend/.envs/.local/.node
     volumes:
       - "./frontend:/app"
+      # This is a workaround to prevent host node_modules from accidently getting mounted in container.
+      # In case you want to use node/npm both outside container for intellisense/lint etc. and also inside container
+      # This will overwrite the default node_modules dir in container so it won't conflict with /app/node_modules.
+      - node_modules:/app/node_modules
     networks:
       - local_frontend
       - local_backend_frontend
@@ -85,6 +89,7 @@ services:
 volumes:
   local_postgres_data: {}
   local_pgadmin_data: {}
+  node_modules: {}
 networks:
   local_backend:
     name: local_backend
